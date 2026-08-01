@@ -1,8 +1,24 @@
 aid: seam-ai
+accessModel:
+  pricing: unknown
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Requires approval
+  confidence: medium
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/seam-ai.png
 name: Seam AI
-description: 'Seam AI is a company surfaced as a portfolio company of bessemer-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Seam AI was an AI-native account-based marketing (ABM) platform that used AI agents to
+  research target accounts, monitor buying signals, and automatically execute outbound marketing and
+  sales campaigns. Backed by Bessemer Venture Partners, the company has been acquired and is merging
+  its product into Clarify as "Clarify Signals" — a signals-aware CRM. As of this enrichment pass the
+  getseam.ai site serves an acquisition/transition notice directing users to the Clarify Signals
+  waitlist, and the company publishes no public API, developer documentation, SDKs, or .well-known
+  discovery surface. This profile is retained in the API Evangelist network as a portfolio-lead record.'
 url: https://raw.githubusercontent.com/api-evangelist/seam-ai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,12 +26,19 @@ x-backed-by:
 - bessemer-venture-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-status: acquired
+x-acquired-by: clarify
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai Ml
+- Account Based Marketing
+- Sales Intelligence
+- Marketing
+- AI Agents
+- CRM
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,5 +46,12 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/seam-ai-domain-security.yml
 - type: Website
   url: https://www.getseam.ai/
+x-enrichment:
+  date: '2026-07-21'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
