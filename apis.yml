@@ -1,24 +1,28 @@
 aid: seam-ai
 accessModel:
-  pricing: unknown
+  pricing: paid
   onboarding: approval
   trial: false
   try_now: false
   public: false
   label: Requires approval
   confidence: medium
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  source:
+  - https://www.getseam.ai/pricing
+  - https://www.getseam.ai/get-started
+  generated: '2026-08-13'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/seam-ai.png
 name: Seam AI
-description: 'Seam AI was an AI-native account-based marketing (ABM) platform that used AI agents to
-  research target accounts, monitor buying signals, and automatically execute outbound marketing and
-  sales campaigns. Backed by Bessemer Venture Partners, the company has been acquired and is merging
-  its product into Clarify as "Clarify Signals" — a signals-aware CRM. As of this enrichment pass the
-  getseam.ai site serves an acquisition/transition notice directing users to the Clarify Signals
-  waitlist, and the company publishes no public API, developer documentation, SDKs, or .well-known
-  discovery surface. This profile is retained in the API Evangelist network as a portfolio-lead record.'
+description: 'Seam AI (legal entity Talkmore Inc.) is an AI-native account-based marketing (ABM) platform
+  that uses AI agents to score accounts against an ICP, monitor first- and third-party buying signals,
+  prospect and enrich contacts, and execute multi-channel outbound plays into Salesforce, HubSpot,
+  Outreach, Salesloft, Marketo, LinkedIn Ads and the customer data warehouse. Backed by Bessemer Venture
+  Partners, the company has been acquired and is merging its product into Clarify as "Clarify Signals";
+  the getseam.ai marketing site now serves an acquisition notice. The developer surface remains live at
+  docs.getseam.ai, which publishes an OpenAPI 3.1.0 contract for the Seam AI Enrichment API, an llms.txt
+  index, an anonymous Model Context Protocol server, an A2A agent card, and a provider-authored Agent
+  Skill. The API host named in that spec (enricher.getseam.ai) no longer resolves in DNS.'
 url: https://raw.githubusercontent.com/api-evangelist/seam-ai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -30,7 +34,7 @@ x-status: acquired
 x-acquired-by: clarify
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 tags:
 - Company
 - Ai Ml
@@ -39,19 +43,89 @@ tags:
 - Marketing
 - AI Agents
 - CRM
-apis: []
+- Data Enrichment
+- Intent Data
+- Sales Automation
+apis:
+- aid: seam-ai:seam-ai-enrichment-api
+  name: Seam AI Enrichment API
+  description: 'The Seam AI Enrichment API enriches customer data with generative AI and traditional
+    third-party data providers. It exposes an OpenAI-compatible chat-completions surface — a single
+    POST /v1/chat/completions operation that accepts developer/system/user messages and an optional
+    JSON Schema response format — so an enrichment prompt can be issued against Seam''s waterfall of
+    providers and returned as structured JSON. Published as OpenAPI 3.1.0 version 0.1.0-beta.1 and
+    authenticated with an API key in the Authorization header.'
+  humanURL: https://docs.getseam.ai/
+  baseURL: https://enricher.getseam.ai
+  tags:
+  - Data Enrichment
+  - AI
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/seam-ai-enrichment-openapi.json
+  - type: Overlay
+    url: overlays/seam-ai-enrichment-overlay.yaml
+  - type: Documentation
+    url: https://docs.getseam.ai/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
-- type: DomainSecurity
-  url: security/seam-ai-domain-security.yml
 - type: Website
   url: https://www.getseam.ai/
+- type: Documentation
+  url: https://docs.getseam.ai/
+- type: GettingStarted
+  url: https://docs.getseam.ai/onboarding/getting-started/overview
+- type: Support
+  url: mailto:support@getseam.ai
+- type: Blog
+  url: https://www.getseam.ai/blog
+- type: Pricing
+  url: https://www.getseam.ai/pricing
+- type: SignUp
+  url: https://www.getseam.ai/get-started
+- type: TermsOfService
+  url: https://www.getseam.ai/legal/master-services-agreement
+- type: PrivacyPolicy
+  url: https://www.getseam.ai/legal/privacy
+- type: LLMsTxt
+  url: llms/seam-ai-llms.txt
+- type: MCPServer
+  url: mcp/seam-ai-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/seam-ai-tool-crosswalk.yml
+- type: AgentCard
+  url: a2a/seam-ai-a2a.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: WellKnown
+  url: well-known/seam-ai-well-known.yml
+- type: Authentication
+  url: authentication/seam-ai-authentication.yml
+- type: Conventions
+  url: conventions/seam-ai-conventions.yml
+- type: ErrorCatalog
+  url: errors/seam-ai-problem-types.yml
+- type: DataModel
+  url: data-model/seam-ai-data-model.yml
+- type: Lifecycle
+  url: lifecycle/seam-ai-lifecycle.yml
+- type: Conformance
+  url: conformance/seam-ai-conformance.yml
+- type: Compliance
+  url: conformance/seam-ai-conformance.yml
+- type: Plans
+  url: plans/seam-ai-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/seam-ai-rate-limits.yml
+- type: DomainSecurity
+  url: security/seam-ai-domain-security.yml
 x-enrichment:
-  date: '2026-07-21'
-  status: minimal
-  artifacts_added: 1
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 22
   pass: local-v1
