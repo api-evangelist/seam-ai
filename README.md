@@ -42,6 +42,14 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Seam AI is a company surfaced as a portfolio company of bessemer-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead awaiting the enrichment pipeline.
+Seam AI (legal entity Talkmore Inc.) was an AI-native account-based marketing platform, surfaced as a
+portfolio company of bessemer-venture-partners. Sector: ai-ml. The company has been acquired and is
+merging into Clarify as "Clarify Signals"; www.getseam.ai now serves only an acquisition notice.
+
+The developer surface remains live at **docs.getseam.ai**, which publishes an OpenAPI 3.1.0 contract for
+the Seam AI Enrichment API, an `llms.txt` index, an anonymous MCP server at `/mcp`, an A2A agent card at
+`/.well-known/agent-card.json`, and a provider-authored Agent Skill at
+`/.well-known/agent-skills/signal/skill.md`. All of those are captured verbatim in this repo. The API
+host named in the spec's `servers[]` block, `enricher.getseam.ai`, no longer resolves in DNS.
 
 Backed by: bessemer-venture-partners — https://www.getseam.ai/

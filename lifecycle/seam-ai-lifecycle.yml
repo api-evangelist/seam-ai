@@ -1,0 +1,65 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.getseam.ai/ (acquisition notice),
+  https://www.clarify.ai/blog/welcoming-seam-ai-to-clarify,
+  https://docs.getseam.ai/openapi.json (info.version),
+  DNS resolution of enricher.getseam.ai, and probes of status.getseam.ai.
+description: >-
+  Seam AI has been acquired and is merging into Clarify as "Clarify Signals".
+  The company publishes no versioning policy, no deprecation policy, no SLA and
+  no status page. The strongest lifecycle signal available is the contract
+  itself plus DNS: the OpenAPI is still served and still labelled beta, while the
+  API host it names no longer resolves.
+versioning:
+  scheme: path
+  mechanism: /v1/ path prefix
+  spec_version: 0.1.0-beta.1
+  header: none
+  policy_url: null
+  notes: >-
+    info.version on the published OpenAPI is 0.1.0-beta.1 — the provider labels
+    its own enrichment API pre-1.0. No version header, no dated versions, no
+    published upgrade path.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  notes: >-
+    No RFC 8594 Sunset/Deprecation headers and no deprecation policy page. No
+    operation in the contract carries deprecated: true.
+sla:
+  url: null
+  public_uptime_target: null
+status_page:
+  url: null
+  evidence: >-
+    status.getseam.ai does not resolve; no status link appears on getseam.ai, in
+    the docs navigation, or in llms.txt.
+changelog:
+  url: null
+  evidence: >-
+    https://www.getseam.ai/unused/changelog returns 200 but contains unmodified
+    Framer template placeholder content (receipt scanning, expense categories)
+    under an /unused/ path — it is not a Seam changelog and was deliberately not
+    captured as one.
+company_lifecycle:
+  status: acquired
+  acquirer: Clarify
+  successor_product: Clarify Signals
+  announcement: https://www.clarify.ai/blog/welcoming-seam-ai-to-clarify
+  waitlist: https://www.clarify.ai/signals
+  contact: hello@clarify.ai
+  evidence: >-
+    getseam.ai serves only an acquisition notice — "Seam AI is joining Clarify to
+    build the CRM that generates revenue, not just manages it" — with all product
+    navigation replaced by Try Clarify calls to action.
+api_host_health:
+  host: enricher.getseam.ai
+  dns: no A or CNAME record as of 2026-08-13
+  reachable: false
+  note: >-
+    The single host named in the OpenAPI servers[] block does not resolve. The
+    contract is published and readable, but not callable from the public
+    internet. Documentation and the MCP server on docs.getseam.ai remain live.

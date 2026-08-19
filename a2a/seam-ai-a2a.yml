@@ -1,0 +1,51 @@
+generated: '2026-08-13'
+method: probed
+source: https://docs.getseam.ai/.well-known/agent-card.json
+description: >-
+  Seam AI serves an A2A agent card from the canonical /.well-known/agent-card.json
+  path on its documentation host. The card advertises a single skill, "Signal",
+  whose skill document is itself served at
+  /.well-known/agent-skills/signal/skill.md and is captured verbatim in
+  skills/seam-ai-signal.md. The card was probed and saved verbatim — it was not
+  generated or derived.
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: docs.getseam.ai
+conformance:
+  spec: A2A 1.0.0
+  grade: conformant
+  protocol_version: '0.3'
+  preferred_transport: HTTP+JSON
+  hard_checks:
+    capabilities_is_object: true
+    protocol_version_present: true
+    skills_is_array: true
+  deviations:
+  - supportedInterfaces-instead-of-additionalInterfaces
+  notes: >-
+    Passes all three hard checks (capabilities is an object, protocolVersion is
+    present, skills is an array) and carries the optional preferredTransport,
+    defaultInputModes and defaultOutputModes fields. It uses the pre-1.0
+    supportedInterfaces key rather than additionalInterfaces, and both the card
+    url and the interface url point at the documentation site root rather than
+    an A2A JSON-RPC endpoint, so the card functions as a discovery/skill
+    manifest rather than an addressable A2A agent transport.
+card:
+  name: Seam AI
+  url: https://docs.getseam.ai/
+  version: 1.0.0
+  organization: Seam AI
+  documentation_url: https://docs.getseam.ai/
+  capabilities:
+    streaming: false
+    push_notifications: false
+  skills: 1
+  skill_ids:
+  - signal
+  file: seam-ai-agent-card.json
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://docs.getseam.ai/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json

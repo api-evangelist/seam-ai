@@ -1,0 +1,34 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.getseam.ai/llms.txt (full documentation index — no rate-limit
+  page exists), https://docs.getseam.ai/openapi.json (no 429 response, no
+  rate-limit headers), and a full-text search of the documentation corpus via
+  the provider's own MCP server at https://docs.getseam.ai/mcp.
+provider: Seam AI
+providerId: seam-ai
+description: >-
+  Seam AI publishes no rate limits for its own API. The complete documentation
+  index in llms.txt contains no rate-limit, quota or throttling page; the
+  OpenAPI declares no 429 response and no RateLimit-* headers; and a search of
+  the docs corpus returns only rate-limit guidance about THIRD-PARTY systems
+  Seam connects to (Apollo, Salesforce), never about the Seam API itself.
+  Consumption is governed commercially by the annual credit bucket rather than
+  by a published request-rate limit — see plans/seam-ai-plans-pricing.yml.
+limits: []
+limit_count: 0
+headers: []
+response_codes:
+  throttled: null
+quota_model:
+  type: credits
+  description: >-
+    Credits are consumed per contact prospected, per contact enriched and per
+    account fit-scored, drawn from an annual bucket sized during a proof of
+    concept.
+  source: https://docs.getseam.ai/guides/management/credit-system
+  exhaustion_behavior: not published
+notes: >-
+  An honest zero: limits are undocumented, not absent. The one operation in the
+  contract requires an API key on a host (enricher.getseam.ai) that no longer
+  resolves, so no live 429 or header could be observed either.

@@ -1,0 +1,39 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, plus the full documentation index at
+  https://docs.getseam.ai/llms.txt and the OpenAPI at
+  https://docs.getseam.ai/openapi.json.
+description: >-
+  Seam AI ships no first-party client libraries. The documentation index lists no
+  SDK, quickstart-with-code, or client-library page; the OpenAPI carries no
+  x-codeSamples; and no package under a getseam/seam-ai namespace exists on npm
+  or PyPI. The only integration path the docs describe is the application's own
+  connection catalog (Salesforce, HubSpot, Snowflake, ...) rather than code.
+packages: []
+package_count: 0
+official_sdk_count: 0
+disambiguation:
+  warning: >-
+    Do NOT attribute the npm package "seam"/"seamapi" or the PyPI package
+    "seam"/"seamapi" to this company. They are published by Seam Labs, Inc. — the
+    IoT device-access API at getseam.com / seam.co ("Control locks, lights and
+    other internet of things devices"), repositories under github.com/seamapi.
+    That is a different company with a confusingly similar name and an adjacent
+    domain (getseam.com vs getseam.ai). Attributing them here would credit Seam
+    AI with SDKs it never shipped.
+  checked:
+  - {registry: npm, name: seam, owner: Seam Labs (github.com/seamapi/javascript), attributed: false}
+  - {registry: npm, name: seamapi, owner: Seam Labs (github.com/seamapi/javascript), attributed: false}
+  - {registry: pypi, name: seam, owner: Seam Labs (github.com/seamapi/python), attributed: false}
+  - {registry: pypi, name: seamapi, owner: Seam Labs (getseam.com), attributed: false}
+  - {registry: npm, name: seam-ai, result: 404}
+  - {registry: npm, name: getseam, result: 404}
+  - {registry: npm, name: '@getseam/sdk', result: 404}
+  - {registry: npm, name: '@seam/sdk', result: 404}
+  - {registry: pypi, name: seam-ai, result: 404}
+  - {registry: pypi, name: getseam, result: 404}
+notes: >-
+  No SDKs pointer is emitted in apis.yml because no first-party client library
+  exists. No public GitHub organization for Seam AI (getseam.ai) was found
+  either.

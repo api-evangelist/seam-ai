@@ -1,0 +1,51 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived from the 4xx/5xx responses declared in
+  openapi/seam-ai-enrichment-openapi.json. Seam AI publishes no error reference
+  page in its documentation index (llms.txt), so nothing here is enriched from
+  docs.
+format: fastapi-validation
+description: >-
+  The Seam AI Enrichment API declares exactly one error response — HTTP 422 with
+  the FastAPI/Pydantic HTTPValidationError envelope. It is not RFC 9457
+  problem+json, it carries no application-level error code or type URI, and no
+  401/403/429/5xx responses are declared even though the operation requires an
+  API key. An agent cannot distinguish an auth failure, a quota failure and a
+  server failure from this contract.
+envelope:
+  content_type: application/json
+  schema: HTTPValidationError
+  shape:
+    detail:
+    - loc: array of string|integer — the path to the offending field
+      msg: string — human-readable message
+      type: string — Pydantic error type identifier
+problem_types:
+- status: 422
+  title: Validation Error
+  type: null
+  operation: completions_request_v1_chat_completions_post
+  schema: HTTPValidationError
+  detail: >-
+    The request body failed schema validation. detail[] enumerates each invalid
+    field with its location, message and Pydantic error type.
+  remediation: >-
+    Correct the named fields against the ChatCompletionRequest schema — model and
+    messages are required; temperature must be 0–2 and top_p 0–1.
+undeclared_but_expected:
+- status: 401
+  reason: >-
+    The operation declares an APIKeyHeader security requirement but no 401
+    response, so the unauthenticated failure shape is undocumented.
+- status: 429
+  reason: >-
+    Seam is credit-metered (see plans/) but the contract declares no throttling
+    or quota-exhaustion response.
+- status: '5xx'
+  reason: No server-error response is declared.
+coverage:
+  operations: 1
+  operations_with_4xx: 1
+  declared_error_responses: 1
+  rfc9457: false

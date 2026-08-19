@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.getseam.ai/pricing
+docs: https://docs.getseam.ai/guides/management/credit-system
+provider: Seam AI
+providerId: seam-ai
+description: >-
+  Seam AI publishes three named tiers on its pricing page, all credit-metered and
+  billed annually. Only the entry tier carries a listed price; Pro and Enterprise
+  are "Custom". Credits are consumed by prospecting, enrichment and AI fit
+  scoring, and the documented sales motion sizes the annual credit bucket from a
+  proof-of-concept rather than from a published rate card — so there is no
+  published per-credit price and no overage rate.
+currency: USD
+billing_period: annual
+metering: credits
+plans:
+- id: growth
+  name: Growth
+  description: For teams looking to get started with intent data.
+  price: 3000
+  price_display: $3,000/month, billed annually
+  currency: USD
+  period: month
+  billing: annual
+  included_quota:
+    credits: 100000
+    period: annual
+  overage: not published
+  features:
+  - Continuously score all accounts
+  - Backtested ICP models
+  - Company and person website intent
+  - Ad intent data
+  - Marketing engagements
+  - New hires, promotions, job changes
+  - Social listening
+  - Lookalikes
+  - Agent plays
+  - Prospecting agent
+  - Research agent
+  - Waterfall enrichment agent
+  - Onboarding + support
+  - Dedicated Slack channel
+- id: pro
+  name: Pro
+  description: For teams looking to start automating plays.
+  price: null
+  price_display: Custom
+  currency: USD
+  billing: annual
+  included_quota:
+    credits: 200000
+    period: annual
+  overage: not published
+  features:
+  - Everything in Growth
+  - Custom fit data
+  - Custom signals
+  - Onboarding + support
+  - Dedicated Slack channel
+  - Monthly meetings
+  marketing_label: Most popular
+- id: enterprise
+  name: Enterprise
+  description: For large organizations looking to scale pipeline automation.
+  price: null
+  price_display: Custom
+  currency: USD
+  billing: annual
+  included_quota:
+    credits: 750000
+    period: annual
+  overage: not published
+  features:
+  - Everything in Pro
+  - Dedicated growth expert
+  - Whiteglove onboarding
+  - Always-on support
+plan_count: 3
+free_tier: false
+trial: false
+self_serve: false
+signup: https://www.getseam.ai/get-started
+notes: >-
+  Every tier's call to action is "Get started" / "Schedule demo" into a sales
+  form — there is no self-serve checkout. The credit-system documentation states
+  customers purchase an annual bucket of credits sized from a POC. The pricing
+  page footer names the legal entity as Talkmore Inc. The company has since been
+  acquired by Clarify and the site now leads with an acquisition notice, so these
+  published prices may no longer be transactable.

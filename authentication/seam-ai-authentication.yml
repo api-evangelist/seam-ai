@@ -1,0 +1,15 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/seam-ai-enrichment-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/seam-ai-enrichment-openapi.json

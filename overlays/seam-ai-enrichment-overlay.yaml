@@ -1,0 +1,75 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Seam AI Enrichment API
+  version: 1.0.0
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/seam-ai-enrichment-openapi.json
+x-description: >-
+  Non-destructive enhancements to the provider-published OpenAPI. The original
+  spec is never mutated. This overlay records the contact/licence/server facts
+  that are absent from the published document, the undeclared-but-expected error
+  responses catalogued in errors/seam-ai-problem-types.yml, and the operational
+  reality that the host named in servers[] no longer resolves.
+extends: ../openapi/seam-ai-enrichment-openapi.json
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Seam AI Support
+      email: support@getseam.ai
+      url: https://docs.getseam.ai/
+    termsOfService: https://www.getseam.ai/legal/master-services-agreement
+    x-provider: Seam AI
+    x-provider-legal-entity: Talkmore Inc.
+    x-provider-status: acquired
+    x-provider-acquired-by: Clarify
+    x-documentation: https://docs.getseam.ai/
+- target: $.servers[0]
+  update:
+    description: >-
+      Production enrichment host as published by the provider. NOTE: this host
+      had no DNS A or CNAME record when probed on 2026-08-13 and was not
+      reachable — see lifecycle/seam-ai-lifecycle.yml.
+    x-reachable: false
+    x-probed: '2026-08-13'
+- target: $.paths['/v1/chat/completions'].post
+  update:
+    x-authentication: authentication/seam-ai-authentication.yml
+    x-error-catalog: errors/seam-ai-problem-types.yml
+    x-conventions: conventions/seam-ai-conventions.yml
+    x-idempotent: false
+    x-streaming: >-
+      Set stream: true on the request body for incremental token delivery; the
+      streamed response shape is not described by the published contract.
+    x-structured-output: >-
+      Set response_format to {"type":"json_schema", "json_schema": {...}} to
+      constrain the enrichment result to a caller-supplied JSON Schema.
+    x-provenance: >-
+      CompletionResponse.citations[] carries the source URLs the enrichment model
+      used, which is the distinguishing field versus stock OpenAI chat
+      completions.
+- target: $.paths['/v1/chat/completions'].post.responses
+  update:
+    '401':
+      description: >-
+        Undeclared by the provider. Expected when the Authorization header is
+        missing or carries an invalid API key. Shape is not documented.
+      x-api-evangelist-added: true
+    '429':
+      description: >-
+        Undeclared by the provider. Expected when the account's annual credit
+        bucket is exhausted or a throttle is applied. No rate-limit headers are
+        documented — see rate-limits/seam-ai-rate-limits.yml.
+      x-api-evangelist-added: true
+    '500':
+      description: >-
+        Undeclared by the provider. Expected for server-side enrichment
+        failures.
+      x-api-evangelist-added: true
+- target: $.tags
+  update:
+  - name: Completions
+    description: >-
+      Data enrichment issued as an OpenAI-compatible chat completion against
+      Seam's generative and third-party provider waterfall.

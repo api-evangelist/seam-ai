@@ -1,0 +1,60 @@
+# Seam AI
+
+## Docs
+
+- [Welcome to Seam](https://docs.getseam.ai/onboarding/getting-started/overview.md): Turn intent signals into pipeline with AI agents that automate prospecting, enrichment, and outbound
+- [Checklist](https://docs.getseam.ai/onboarding/getting-started/checklist.md): Complete guide to getting Seam up and running in 2-3 weeks
+- [Connecting data sources](https://docs.getseam.ai/onboarding/setup/connecting-data-sources.md): Connect your CRM, sales tools, marketing platforms, and other systems to Seam
+- [Installing web pixel](https://docs.getseam.ai/onboarding/setup/installing-web-pixel.md): Quickly set up the Seam's reveal tag on your marketing site.
+- [Setting intent keywords](https://docs.getseam.ai/onboarding/setup/setting-intent-keywords.md): Track third-party intent signals to identify accounts actively researching your space
+- [ICP Fit](https://docs.getseam.ai/onboarding/configure/configuring-icp-fit.md): AI-powered account scoring that identifies which companies match your ICP
+- [Personas](https://docs.getseam.ai/onboarding/configure/creating-personas.md): Define target roles and automatically find the right contacts within your accounts
+- [Signals](https://docs.getseam.ai/onboarding/configure/configuring-signals.md): Track external events and triggers that indicate the right time to engage accounts
+- [Audiences](https://docs.getseam.ai/onboarding/configure/creating-audiences.md): Create dynamic segments of accounts and contacts based on fit, intent, signals, and engagement
+- [Routing queue](https://docs.getseam.ai/onboarding/orchestrate/routing-queue.md): Create reusable groups of sales reps for automated contact distribution
+- [Plays](https://docs.getseam.ai/onboarding/orchestrate/plays.md)
+- [Unified data model](https://docs.getseam.ai/guides/configuring-seam/unified-data-model.md): How Seam consolidates your data sources into a single unified view
+- [Intent keywords](https://docs.getseam.ai/guides/configuring-seam/bombora.md): Track third-party intent signals to identify accounts actively researching your space
+- [Fit score](https://docs.getseam.ai/guides/monitoring-and-intelligence/fit-score.md): AI-powered account scoring that identifies which companies match your ICP
+- [ABM stages](https://docs.getseam.ai/guides/monitoring-and-intelligence/abm-stages.md): Track where every account stands in the buying journey with Seam's ABM stage framework
+- [Intent](https://docs.getseam.ai/guides/monitoring-and-intelligence/intent.md): Identify accounts actively engaging with your brand and researching your space
+- [Signals](https://docs.getseam.ai/guides/monitoring-and-intelligence/signals.md): Track external events and triggers that indicate the right time to engage accounts
+- [Reach](https://docs.getseam.ai/guides/monitoring-and-intelligence/reach.md): Measure outbound engagement and identify coverage gaps across your target accounts
+- [Audiences](https://docs.getseam.ai/guides/monitoring-and-intelligence/audiences.md): Create dynamic segments of accounts and contacts based on fit, intent, signals, and engagement
+- [Personas](https://docs.getseam.ai/guides/monitoring-and-intelligence/personas.md): Define target roles and automatically find the right contacts within your accounts
+- [Routing](https://docs.getseam.ai/guides/actions/routing.md): Automatically assign contacts to the right sales reps based on territory, ownership, or custom rules
+- [Plays](https://docs.getseam.ai/guides/actions/plays.md): Automated workflows that prospect, enrich, and deploy contacts based on fit, intent, and signals
+- [Users](https://docs.getseam.ai/guides/management/users.md): Invite team members in Seam
+- [Credits & pricing](https://docs.getseam.ai/guides/management/credit-system.md): Understanding how Seam AI credits work
+- [Security](https://docs.getseam.ai/guides/management/security.md): Our commitment to data security and compliance
+- [Authenticate](https://docs.getseam.ai/connections/salesforce-auth.md): Connect Salesforce as both a source and destination in Seam
+- [Custom fields](https://docs.getseam.ai/connections/salesforce-custom-fields.md): Connect Salesforce as both a source and destination in Seam
+- [Authenticate](https://docs.getseam.ai/connections/hubspot-auth.md): Quick guide to connecting HubSpot as a Source and Destination.
+- [Custom fields](https://docs.getseam.ai/connections/hubspot-custom-fields.md): Quick guide to connecting HubSpot as a Source and Destination.
+- [Outreach](https://docs.getseam.ai/connections/outreach.md): Quick guide to connecting Outreach as a Source and Destination.
+- [Salesloft](https://docs.getseam.ai/connections/salesloft.md): Quick guide to connecting Salesloft as a Source and Destination.
+- [Smartlead](https://docs.getseam.ai/connections/smartlead.md): Quick guide to connecting Smartlead as a Source and Destination.
+- [Apollo.io](https://docs.getseam.ai/connections/apollo.md): Quick guide to connecting Apollo.io as a destination.
+- [Marketo](https://docs.getseam.ai/connections/marketo.md): Quick guide to connecting Marketo as a Source and Destination.
+- [Google Ads](https://docs.getseam.ai/connections/google-ads.md): Quick guide to connecting Google Ads as a Source and Destination.
+- [LinkedIn Ads](https://docs.getseam.ai/connections/linkedin-ads.md): Quick guide to connecting LinkedIn Ads as a Source and Destination.
+- [Snowflake](https://docs.getseam.ai/connections/snowflake.md): Connect your Snowflake warehouse.
+- [BigQuery](https://docs.getseam.ai/connections/bigquery.md): Connect your BigQuery data warehouse to Seam
+- [Redshift](https://docs.getseam.ai/connections/redshift.md): Connect your Redshift data warehouse to Seam
+- [Azure Synapse](https://docs.getseam.ai/connections/azure-synapse.md): Connect your Azure Synapse warehouse.
+- [PostgreSQL](https://docs.getseam.ai/connections/postgres.md): Connect your PostgreSQL database to Seam
+- [Amplitude](https://docs.getseam.ai/connections/amplitude.md): Quick guide to connecting Amplitude as a Source and Destination.
+- [NetSuite](https://docs.getseam.ai/connections/netsuite.md): Quick guide to connecting NetSuite as a Source and Destination.
+- [Slack](https://docs.getseam.ai/connections/slack.md): Quick guide to connecting Slack as a Source.
+- [GitHub](https://docs.getseam.ai/connections/github.md): Quick guide to connecting GitHub as a Source.
+- [CSV](https://docs.getseam.ai/connections/csv.md): Connect CSV files as a data source in Seam
+- [Google Sheets](https://docs.getseam.ai/connections/google-sheets.md): Quick guide to connecting Google Sheets as a Source and Destination.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.getseam.ai/openapi.json)
+
+## Optional
+
+- [Blog](https://www.getseam.ai/blog)
+- [Support](mailto:support@getseam.ai)

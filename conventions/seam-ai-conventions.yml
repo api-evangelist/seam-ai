@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived from openapi/seam-ai-enrichment-openapi.json (a FastAPI-generated
+  OpenAPI 3.1.0 document) plus the published documentation at
+  https://docs.getseam.ai. Seam AI does not publish a cross-cutting API
+  conventions page; everything below is either read off the contract or recorded
+  as not documented.
+description: >-
+  Cross-cutting request/response semantics for the Seam AI Enrichment API. The
+  surface is deliberately OpenAI-compatible: one chat-completions endpoint,
+  OpenAI-shaped request and response envelopes, and an OpenAI-style
+  response_format for structured JSON output. Most conventions a multi-resource
+  REST API would carry (pagination, idempotency, expansion, versioning headers)
+  simply do not apply to a single-operation surface, and none are documented.
+base_url: https://enricher.getseam.ai
+api_style: >-
+  REST over HTTPS, JSON request and response bodies, OpenAI chat-completions
+  compatible.
+authentication:
+  scheme: API key in the Authorization request header
+  security_scheme: APIKeyHeader
+  applied: Declared globally on the single operation's security block.
+  key_format: not documented
+  detail: authentication/seam-ai-authentication.yml
+  docs: null
+idempotency:
+  supported: false
+  evidence: >-
+    No Idempotency-Key header, no idempotency parameter, and no idempotency
+    documentation. The single operation is a POST completion request with no
+    replay semantics described.
+pagination:
+  applicable: false
+  evidence: No list operations in the contract.
+field_expansion:
+  supported: false
+structured_output:
+  supported: true
+  mechanism: >-
+    response_format on the request body — either {"type":"text"} or
+    {"type":"json_schema","json_schema":{name, description, schema, strict}} —
+    so an enrichment call can be constrained to a caller-supplied JSON Schema.
+  schema: ResponseFormatJSONSchema / JSONSchema
+streaming:
+  supported: true
+  mechanism: >-
+    The stream boolean on ChatCompletionRequest; the operation description
+    states tokens are returned as they are generated.
+  note: The response schema documents only the non-streamed CompletionResponse.
+provenance_signal:
+  citations: >-
+    CompletionResponse carries a citations[] array of source URLs used by the
+    enrichment model — the contract's one distinctive field versus stock OpenAI
+    chat completions.
+request_tracing:
+  request_id_header: not documented
+  response_id: CompletionResponse.id (a UUID identifying the completion, not a request trace id)
+versioning:
+  scheme: path
+  mechanism: /v1/ path prefix
+  spec_version: 0.1.0-beta.1
+  header: none
+  detail: lifecycle/seam-ai-lifecycle.yml
+error_envelope:
+  documented_status_codes: [200, 422]
+  shape: >-
+    FastAPI/Pydantic validation envelope — {"detail":[{"loc":[...],"msg":"...",
+    "type":"..."}]} — not RFC 9457 problem+json.
+  content_type: application/json
+  detail: errors/seam-ai-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  detail: rate-limits/seam-ai-rate-limits.yml
+webhooks:
+  documented: false
+  evidence: >-
+    No webhooks block in the OpenAPI and no event/webhook page in the docs index
+    (llms.txt). Seam is the consumer of other platforms' data rather than a
+    publisher of events to third parties.

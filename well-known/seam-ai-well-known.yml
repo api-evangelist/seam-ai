@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for every host in
+  apis.yml — the marketing site (www.getseam.ai), the documentation host
+  (docs.getseam.ai) and the OpenAPI servers[] host (enricher.getseam.ai).
+  Status is the HTTP code observed at fetch time. docs.getseam.ai serves two
+  real machine-readable documents — an A2A agent card and an MCP server
+  descriptor — both saved verbatim below. enricher.getseam.ai has no DNS A
+  record, so every probe against it failed to connect (recorded as status 0).
+  No security.txt, OIDC discovery, OAuth metadata or api-catalog is served on
+  any host.
+hosts:
+- host: https://docs.getseam.ai
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: seam-ai-agent-card.json
+    note: Real A2A AgentCard JSON object; also saved to a2a/ and graded there.
+  - path: /.well-known/mcp.json
+    status: 200
+    content_type: application/json
+    file: seam-ai-mcp.json
+    note: >-
+      MCP server descriptor advertising an anonymous HTTP transport. The url it
+      names is the Mintlify origin (signal-97.main-kill-isr.mintlify.me/mcp);
+      the provider-branded endpoint https://docs.getseam.ai/mcp answers the same
+      JSON-RPC surface and is what mcp/seam-ai-mcp.yml records.
+  - path: /.well-known/agent-skills/signal/skill.md
+    status: 200
+    content_type: text/markdown
+    file: ../skills/seam-ai-signal.md
+    note: Provider-authored Agent Skill referenced by the agent card's skills[].
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://www.getseam.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://enricher.getseam.ai
+  note: >-
+    Host does not resolve — no A or CNAME record for enricher.getseam.ai as of
+    2026-08-13. Every /.well-known/ probe failed at DNS resolution.
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+  - path: /.well-known/oauth-authorization-server
+    status: 0
+  - path: /.well-known/oauth-protected-resource
+    status: 0
+  - path: /.well-known/openid-configuration
+    status: 0
+  - path: /.well-known/api-catalog
+    status: 0
+security_txt: false
+openid_configuration: false
+oauth_metadata: false
+api_catalog: false

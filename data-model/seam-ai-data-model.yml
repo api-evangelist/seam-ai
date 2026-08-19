@@ -1,0 +1,133 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Entities and relationships derived from the components.schemas $ref graph in
+  openapi/seam-ai-enrichment-openapi.json. The product-domain entities below the
+  contract line are read from the provider's own documentation
+  (https://docs.getseam.ai — unified data model, fit score, personas, audiences,
+  plays, routing) and from the verbatim Signal Agent Skill in
+  skills/seam-ai-signal.md; they are named in the docs but have no published
+  REST representation.
+docs: https://docs.getseam.ai/guides/configuring-seam/unified-data-model
+notation: >-
+  relationships use has_one / has_many with the field name that carries the
+  reference; direction is from the entity that owns the field.
+contract_entities:
+- name: ChatCompletionRequest
+  domain: enrichment
+  description: >-
+    An enrichment request — model, messages[], optional temperature, top_p,
+    stream and response_format.
+- name: ChatCompletionDeveloperMessageParam
+  domain: enrichment
+  description: A developer-role message in the request.
+- name: ChatCompletionSystemMessageParam
+  domain: enrichment
+  description: A system-role message in the request.
+- name: ChatCompletionUserMessageParam
+  domain: enrichment
+  description: A user-role message in the request — the enrichment prompt.
+- name: ChatCompletionContentPartTextParam
+  domain: enrichment
+  description: A text content part inside a message.
+- name: ResponseFormatText
+  domain: enrichment
+  description: Free-text output format.
+- name: ResponseFormatJSONSchema
+  domain: enrichment
+  description: Structured-output format bound to a caller-supplied JSON Schema.
+- name: JSONSchema
+  domain: enrichment
+  description: The named schema (name, description, schema, strict) constraining output.
+- name: CompletionResponse
+  domain: enrichment
+  description: >-
+    The enrichment result — id, model, created, citations[], choices[], object.
+- name: Choices
+  domain: enrichment
+  description: One completion choice — index, finish_reason, message.
+- name: MessageChunk
+  domain: enrichment
+  description: The message body of a choice — role and content.
+- name: Role
+  domain: enrichment
+  description: Enum — assistant, user, developer, system.
+- name: HTTPValidationError
+  domain: errors
+  description: Validation error envelope.
+- name: ValidationError
+  domain: errors
+  description: A single field validation failure — loc, msg, type.
+contract_relationships:
+- from: ChatCompletionRequest
+  to: ChatCompletionUserMessageParam
+  type: has_many
+  via: messages
+- from: ChatCompletionRequest
+  to: ChatCompletionSystemMessageParam
+  type: has_many
+  via: messages
+- from: ChatCompletionRequest
+  to: ChatCompletionDeveloperMessageParam
+  type: has_many
+  via: messages
+- from: ChatCompletionRequest
+  to: ResponseFormatJSONSchema
+  type: has_one
+  via: response_format
+- from: ChatCompletionRequest
+  to: ResponseFormatText
+  type: has_one
+  via: response_format
+- from: ResponseFormatJSONSchema
+  to: JSONSchema
+  type: has_one
+  via: json_schema
+- from: ChatCompletionUserMessageParam
+  to: ChatCompletionContentPartTextParam
+  type: has_many
+  via: content
+- from: CompletionResponse
+  to: Choices
+  type: has_many
+  via: choices
+- from: Choices
+  to: MessageChunk
+  type: has_one
+  via: message
+- from: MessageChunk
+  to: Role
+  type: has_one
+  via: role
+- from: HTTPValidationError
+  to: ValidationError
+  type: has_many
+  via: detail
+product_entities:
+  note: >-
+    Documented product concepts with no published REST representation. Recorded
+    so the gap between what Seam's docs describe and what its contract exposes
+    is visible; no schema is asserted for any of them.
+  entities:
+  - {name: Account, description: A target company in the unified data model.}
+  - {name: Contact, description: A person at an account, prospected and enriched by Seam.}
+  - {name: FitScore, description: AI-generated ICP match grade (A/B/C/D) on an account.}
+  - {name: Intent, description: First- and third-party engagement signal on an account.}
+  - {name: Signal, description: An external event trigger — new hires, funding, job posts, social mentions.}
+  - {name: Persona, description: A target role definition used to select contacts within an account.}
+  - {name: Audience, description: A dynamic segment combining fit, intent, signals and attributes.}
+  - {name: Play, description: An automated workflow — trigger, audience filter, personas, enrichment, routing, deployment.}
+  - {name: RoutingQueue, description: A reusable group of sales reps for contact distribution.}
+  - {name: Connection, description: A configured source/destination system (Salesforce, HubSpot, Snowflake, ...).}
+  product_relationships:
+  - {from: Account, to: Contact, type: has_many, via: account}
+  - {from: Account, to: FitScore, type: has_one, via: account}
+  - {from: Account, to: Signal, type: has_many, via: account}
+  - {from: Audience, to: Account, type: has_many, via: criteria}
+  - {from: Play, to: Audience, type: has_one, via: trigger_audience}
+  - {from: Play, to: Persona, type: has_many, via: personas}
+  - {from: Play, to: RoutingQueue, type: has_one, via: routing}
+coverage:
+  contract_entities: 14
+  contract_relationships: 11
+  product_entities_without_contract: 10

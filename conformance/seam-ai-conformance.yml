@@ -1,0 +1,112 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.getseam.ai/guides/management/security (certifications),
+  https://docs.getseam.ai/openapi.json (securitySchemes, error schema),
+  https://docs.getseam.ai/.well-known/agent-card.json,
+  https://docs.getseam.ai/mcp (live initialize/tools-list),
+  and the /.well-known/ probes in well-known/seam-ai-well-known.yml.
+description: >-
+  Cross-cutting standards and compliance posture for Seam AI. The agent-facing
+  standards (MCP, A2A, llms.txt, Agent Skills) are the strong side of this
+  profile — all four are served live from docs.getseam.ai. The HTTP-API
+  standards side is thin: API-key auth only, no OAuth, no OIDC, no RFC 9457.
+standards:
+- id: openapi
+  conforms: true
+  evidence: >-
+    OpenAPI 3.1.0 document published at https://docs.getseam.ai/openapi.json;
+    parses, declares one path with an operationId, summary, description, tag,
+    request example, response example and securityScheme.
+- id: mcp
+  conforms: true
+  evidence: >-
+    Live remote MCP server at https://docs.getseam.ai/mcp; initialize returned
+    protocolVersion 2025-06-18 and tools/list returned 3 tools with inputSchema,
+    anonymously. A /.well-known/mcp.json descriptor is also served.
+- id: a2a
+  conforms: true
+  evidence: >-
+    A2A agent card at the canonical /.well-known/agent-card.json path, graded
+    conformant against A2A 1.0.0 in a2a/seam-ai-a2a.yml (protocolVersion 0.3,
+    capabilities object, skills array).
+- id: agent-skills
+  conforms: true
+  evidence: >-
+    Provider-authored Agent Skill served at
+    /.well-known/agent-skills/signal/skill.md with name/description/metadata
+    frontmatter; referenced from the agent card skills[] and exposed as MCP
+    resource mintlify://skills/signal.
+- id: llmstxt
+  conforms: true
+  evidence: >-
+    https://docs.getseam.ai/llms.txt returns 200 text/plain in llms.txt format —
+    H1, sections, and a link list including an OpenAPI Specs section.
+- id: api-key-auth
+  conforms: true
+  evidence: >-
+    components.securitySchemes.APIKeyHeader — apiKey in the Authorization header,
+    applied to the single operation.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 securityScheme in the contract; /.well-known/oauth-authorization-server
+    and /.well-known/oauth-protected-resource both 404 on every host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    The only declared error response is a FastAPI HTTPValidationError envelope
+    with application/json, not application/problem+json.
+- id: rfc9116
+  conforms: false
+  evidence: No /.well-known/security.txt on www.getseam.ai or docs.getseam.ai.
+- id: rfc8594
+  conforms: false
+  evidence: No Sunset or Deprecation headers and no deprecation policy.
+- id: rfc8615
+  conforms: true
+  evidence: >-
+    Serves well-known URIs correctly — agent-card.json, mcp.json and the
+    agent-skills namespace all resolve under /.well-known/ on docs.getseam.ai.
+- id: openai-chat-completions
+  conforms: true
+  evidence: >-
+    The enrichment API mirrors the OpenAI chat-completions request/response
+    shape (model, messages[], temperature, top_p, stream, response_format;
+    id/model/created/choices/object) with an added citations[] array.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency key, header or policy in the contract or docs.
+- id: pagination
+  conforms: false
+  evidence: No list operations in the contract.
+compliance:
+  program_manager: Drata
+  source: https://docs.getseam.ai/guides/management/security
+  certifications:
+  - name: SOC 2 Type 2
+    status: claimed
+    evidence: >-
+      "SOC 2 Type 2 — Our comprehensive security controls are designed to protect
+      customer data and maintain operational excellence."
+  - name: GDPR
+    status: claimed
+    evidence: >-
+      "We're GDPR compliant and committed to protecting the privacy rights of
+      individuals in the European Union," with a linked Data Processing Agreement.
+  - name: CCPA
+    status: claimed
+    evidence: >-
+      "We're CCPA compliant and respect the privacy rights of California
+      residents," with a linked Data Processing Agreement.
+  dpa: >-
+    Published as a Google Doc linked from the security page rather than hosted on
+    a getseam.ai URL.
+  trust_center: null
+  note: >-
+    Certifications are self-asserted on the documentation site. No trust center,
+    no report portal, and no downloadable attestation is published, so status is
+    recorded as claimed rather than verified.

@@ -1,0 +1,39 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.getseam.ai/.well-known/agent-skills/signal/skill.md
+description: >-
+  Seam AI publishes its own Agent Skill from the /.well-known/agent-skills/
+  namespace on the documentation host, referenced by the skills[] array of its
+  A2A agent card and also exposed as an MCP resource (mintlify://skills/signal).
+  The skill document is saved verbatim — API Evangelist did not author it.
+  No skill was generated on the provider's behalf: the one published OpenAPI
+  operation is a single chat-completions call with no multi-step flow to package.
+skills:
+- id: signal
+  name: Signal
+  file: seam-ai-signal.md
+  method: searched
+  source: https://docs.getseam.ai/.well-known/agent-skills/signal/skill.md
+  http_status: 200
+  content_type: text/markdown
+  version: '1.0'
+  description: >-
+    Use when building account-based marketing campaigns, automating prospecting
+    workflows, configuring account scoring and intent tracking, setting up
+    multi-channel plays, or managing sales routing and contact enrichment.
+  covers:
+  - fit-score
+  - intent
+  - signals
+  - personas
+  - audiences
+  - plays
+  - routing
+  - connections
+  - credits
+  operations: []
+  note: >-
+    Product-operation skill written against the Seam application UI and its
+    connection catalog, not against the Enrichment REST API; it names no
+    operationIds.
+skill_count: 1

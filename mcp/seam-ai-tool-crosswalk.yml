@@ -1,0 +1,58 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived by binding the live MCP tools/list response
+  (mcp/seam-ai-mcp-tools.json, probed anonymously at https://docs.getseam.ai/mcp)
+  against the operations in openapi/seam-ai-enrichment-openapi.json.
+description: >-
+  Seam AI's two machine surfaces do not overlap at all. The MCP server is a
+  documentation-search server over the public docs corpus; the OpenAPI describes
+  a single data-enrichment completions endpoint on a different host. No MCP tool
+  is backed by a REST operation and the one REST operation has no tool, so this
+  crosswalk records a complete divergence rather than a mapping. That is the
+  finding: an agent that connects to Seam's MCP server can read the docs but
+  cannot call the product.
+surfaces:
+  openapi:
+    file: openapi/seam-ai-enrichment-openapi.json
+    servers:
+    - https://enricher.getseam.ai
+    gated: true
+    note: >-
+      Requires an API key in the Authorization header, and the host does not
+      currently resolve in DNS.
+    operation_count: 1
+  mcp:
+    url: https://docs.getseam.ai/mcp
+    gated: false
+    note: Anonymous; tools/list returned 200 with full inputSchema for every tool.
+    tool_count: 3
+  graphql:
+    present: false
+crosswalk: []
+mcp_only:
+- tool: search_seam_ai
+  reason: >-
+    Documentation search over the public docs corpus. No public REST operation
+    exposes docs search.
+- tool: query_docs_filesystem_seam_ai
+  reason: >-
+    Read-only shell-like query against the in-memory documentation filesystem.
+    Docs-platform capability with no REST equivalent.
+- tool: submit_feedback
+  reason: >-
+    Files a documentation defect report. Docs-platform capability with no REST
+    equivalent.
+rest_only:
+- operationId: completions_request_v1_chat_completions_post
+  method: POST
+  path: /v1/chat/completions
+  reason: >-
+    The enrichment completions endpoint is not surfaced as an MCP tool. The MCP
+    server is scoped to documentation content only.
+coverage:
+  mcp_tools: 3
+  mcp_tools_mapped: 0
+  rest_operations: 1
+  rest_operations_mapped: 0
+  overlap: 0
