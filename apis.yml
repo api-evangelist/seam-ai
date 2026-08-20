@@ -59,6 +59,10 @@ apis:
   baseURL: https://enricher.getseam.ai
   tags:
   - Data Enrichment
+  - Artificial Intelligence
+  - Chat Completions
+  tags_raw:
+  - Data Enrichment
   - AI
   - Chat Completions
   properties:
