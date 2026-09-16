@@ -85,8 +85,6 @@ common:
   url: https://docs.getseam.ai/
 - type: GettingStarted
   url: https://docs.getseam.ai/onboarding/getting-started/overview
-- type: Support
-  url: mailto:support@getseam.ai
 - type: Blog
   url: https://www.getseam.ai/blog
 - type: Pricing
