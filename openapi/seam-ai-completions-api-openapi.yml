@@ -62,6 +62,19 @@ paths:
       - APIKeyHeader: []
 components:
   schemas:
+    ResponseFormatJSONSchema:
+      properties:
+        json_schema:
+          $ref: '#/components/schemas/JSONSchema'
+        type:
+          type: string
+          const: json_schema
+          title: Type
+      type: object
+      required:
+      - json_schema
+      - type
+      title: ResponseFormatJSONSchema
     ValidationError:
       properties:
         loc:
@@ -83,57 +96,73 @@ components:
       - msg
       - type
       title: ValidationError
-    ResponseFormatText:
+    ChatCompletionContentPartTextParam:
       properties:
+        text:
+          type: string
+          title: Text
         type:
           type: string
           const: text
           title: Type
       type: object
       required:
+      - text
       - type
-      title: ResponseFormatText
-    JSONSchema:
+      title: ChatCompletionContentPartTextParam
+    CompletionResponse:
       properties:
-        name:
+        id:
           type: string
-          title: Name
-        description:
+          title: Id
+        model:
           type: string
-          title: Description
-        schema:
-          type: object
-          title: Schema
-        strict:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Strict
+          title: Model
+        created:
+          type: integer
+          title: Created
+        citations:
+          items:
+            type: string
+          type: array
+          title: Citations
+          default: []
+        choices:
+          items:
+            $ref: '#/components/schemas/Choices'
+          type: array
+          title: Choices
+        object:
+          type: string
+          title: Object
+          default: chat.completion
       type: object
       required:
-      - name
-      title: JSONSchema
-    ChatCompletionSystemMessageParam:
+      - id
+      - model
+      - created
+      - choices
+      title: CompletionResponse
+    MessageChunk:
       properties:
-        content:
-          anyOf:
-          - type: string
-          - items:
-              $ref: '#/components/schemas/ChatCompletionContentPartTextParam'
-            type: array
-          title: Content
         role:
+          $ref: '#/components/schemas/Role'
+        content:
           type: string
-          const: system
-          title: Role
-        name:
-          type: string
-          title: Name
+          title: Content
       type: object
       required:
-      - content
       - role
-      title: ChatCompletionSystemMessageParam
+      - content
+      title: MessageChunk
+    Role:
+      type: string
+      enum:
+      - assistant
+      - user
+      - developer
+      - system
+      title: Role
     ChatCompletionRequest:
       properties:
         temperature:
@@ -247,7 +276,7 @@ components:
       - messages
       title: ChatCompletionRequest
       description: Model for /v1/chat/completions request body.
-    ChatCompletionDeveloperMessageParam:
+    ChatCompletionSystemMessageParam:
       properties:
         content:
           anyOf:
@@ -258,7 +287,7 @@ components:
           title: Content
         role:
           type: string
-          const: developer
+          const: system
           title: Role
         name:
           type: string
@@ -267,7 +296,7 @@ components:
       required:
       - content
       - role
-      title: ChatCompletionDeveloperMessageParam
+      title: ChatCompletionSystemMessageParam
     ChatCompletionUserMessageParam:
       properties:
         content:
@@ -289,39 +318,36 @@ components:
       - content
       - role
       title: ChatCompletionUserMessageParam
-    Role:
-      type: string
-      enum:
-      - assistant
-      - user
-      - developer
-      - system
-      title: Role
-    MessageChunk:
+    JSONSchema:
       properties:
-        role:
-          $ref: '#/components/schemas/Role'
-        content:
+        name:
           type: string
-          title: Content
+          title: Name
+        description:
+          type: string
+          title: Description
+        schema:
+          type: object
+          title: Schema
+        strict:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict
       type: object
       required:
-      - role
-      - content
-      title: MessageChunk
-    ResponseFormatJSONSchema:
+      - name
+      title: JSONSchema
+    ResponseFormatText:
       properties:
-        json_schema:
-          $ref: '#/components/schemas/JSONSchema'
         type:
           type: string
-          const: json_schema
+          const: text
           title: Type
       type: object
       required:
-      - json_schema
       - type
-      title: ResponseFormatJSONSchema
+      title: ResponseFormatText
     HTTPValidationError:
       properties:
         detail:
@@ -331,6 +357,27 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ChatCompletionDeveloperMessageParam:
+      properties:
+        content:
+          anyOf:
+          - type: string
+          - items:
+              $ref: '#/components/schemas/ChatCompletionContentPartTextParam'
+            type: array
+          title: Content
+        role:
+          type: string
+          const: developer
+          title: Role
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - content
+      - role
+      title: ChatCompletionDeveloperMessageParam
     Choices:
       properties:
         index:
@@ -347,53 +394,6 @@ components:
       - finish_reason
       - message
       title: Choices
-    ChatCompletionContentPartTextParam:
-      properties:
-        text:
-          type: string
-          title: Text
-        type:
-          type: string
-          const: text
-          title: Type
-      type: object
-      required:
-      - text
-      - type
-      title: ChatCompletionContentPartTextParam
-    CompletionResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        model:
-          type: string
-          title: Model
-        created:
-          type: integer
-          title: Created
-        citations:
-          items:
-            type: string
-          type: array
-          title: Citations
-          default: []
-        choices:
-          items:
-            $ref: '#/components/schemas/Choices'
-          type: array
-          title: Choices
-        object:
-          type: string
-          title: Object
-          default: chat.completion
-      type: object
-      required:
-      - id
-      - model
-      - created
-      - choices
-      title: CompletionResponse
   securitySchemes:
     APIKeyHeader:
       type: apiKey
