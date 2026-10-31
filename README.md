@@ -64,14 +64,80 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Seam AI (legal entity Talkmore Inc.) was an AI-native account-based marketing platform, surfaced as a
-portfolio company of bessemer-venture-partners. Sector: ai-ml. The company has been acquired and is
-merging into Clarify as "Clarify Signals"; www.getseam.ai now serves only an acquisition notice.
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
 
-The developer surface remains live at **docs.getseam.ai**, which publishes an OpenAPI 3.1.0 contract for
-the Seam AI Enrichment API, an `llms.txt` index, an anonymous MCP server at `/mcp`, an A2A agent card at
-`/.well-known/agent-card.json`, and a provider-authored Agent Skill at
-`/.well-known/agent-skills/signal/skill.md`. All of those are captured verbatim in this repo. The API
-host named in the spec's `servers[]` block, `enricher.getseam.ai`, no longer resolves in DNS.
+Seam AI (legal entity Talkmore Inc.) is an AI-native account-based marketing (ABM) platform that uses AI agents to score accounts against an ICP, monitor first- and third-party buying signals, prospect and enrich contacts, and execute multi-channel outbound plays into Salesforce, HubSpot, Outreach, Salesloft, Marketo, LinkedIn Ads and the customer data warehouse. Backed by Bessemer Venture Partners, the company has been acquired and is merging its product into Clarify as "Clarify Signals"; the getseam.ai marketing site now serves an acquisition notice. The developer surface remains live at docs.getseam.ai, which publishes an OpenAPI 3.1.0 contract for the Seam AI Enrichment API, an llms.txt index, an anonymous Model Context Protocol server, an A2A agent card, and a provider-authored Agent Skill. The API host named in that spec (enricher.getseam.ai) no longer resolves in DNS.
 
-Backed by: bessemer-venture-partners — https://www.getseam.ai/
+**Areas:** Company · Artificial Intelligence · Account Based Marketing · Sales Intelligence · Marketing · AI Agents · CRM · Data Enrichment · Intent Data · Sales Automation · A2A
+
+## Seam AI on APIs.io (historical record)
+
+Everything profiled for Seam AI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/seam-ai/](https://apis.io/providers/seam-ai/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Seam AI Completions API](https://apis.io/apis/seam-ai/seam-ai-completions-api/) — The Completions API from Seam AI — 1 operation(s) for completions.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Seam AI](https://apis.io/servers/seam-ai/seam-ai/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Seam Ai Enrichment Overlay](https://apis.io/overlays/seam-ai/seam-ai-enrichment-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Seam Ai Authentication](https://apis.io/security/seam-ai/seam-ai-authentication/)
+- [Seam Ai Domain Security](https://apis.io/security/seam-ai/seam-ai-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Seam Ai Plans Pricing](https://apis.io/plans/seam-ai/seam-ai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Seam Ai Rate Limits](https://apis.io/rate-limits/seam-ai/seam-ai-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.getseam.ai/)
+- [Documentation](https://docs.getseam.ai/)
+- [Getting started](https://docs.getseam.ai/onboarding/getting-started/overview)
+- [Pricing](https://www.getseam.ai/pricing)
+- [Sign up](https://www.getseam.ai/get-started)
+- [Blog](https://www.getseam.ai/blog)
+- [Terms of service](https://www.getseam.ai/legal/master-services-agreement)
+- [Privacy policy](https://www.getseam.ai/legal/privacy)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Seam AI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/seam-ai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
